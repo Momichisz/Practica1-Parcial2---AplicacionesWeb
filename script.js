@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
       saveTasksToLocalStorage();
 
       // Limpiar el formulario
-      //form.reset();
+      form.reset();
 
       // Mostrar la alerta de éxito
       successAlert.style.display = 'block';

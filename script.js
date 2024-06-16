@@ -35,7 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // Crear el checkbox para la celda de "Completa"
       const checkboxCompleta = document.createElement('input');
       checkboxCompleta.type = 'checkbox';
-      checkboxCompleta.className = 'form-check-input';
+      checkboxCompleta.className = 'form-check-input mt-1';
+      checkboxCompleta.id = 'marca';
+
+      // Deshabilitar el checkbox si la fecha de fin ha expirado
+      if (new Date(fechaFin) < new Date()) {
+          checkboxCompleta.disabled = true;
+          nuevaFila.classList.add('expired');
+      }
 
       // Agregar evento para cambiar el color de la fila cuando se marca/desmarca el checkbox
       checkboxCompleta.addEventListener('change', function () {
@@ -84,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
       saveTasksToLocalStorage();
 
       // Limpiar el formulario
-      form.reset();
+      //form.reset();
 
       // Mostrar la alerta de éxito
       successAlert.style.display = 'block';
@@ -131,6 +138,12 @@ document.addEventListener('DOMContentLoaded', function () {
           checkboxCompleta.type = 'checkbox';
           checkboxCompleta.className = 'form-check-input';
           checkboxCompleta.checked = task.completa;
+
+          // Deshabilitar el checkbox si la fecha de fin ha expirado
+          if (new Date(task.fechaFin) < new Date()) {
+              checkboxCompleta.disabled = true;
+              nuevaFila.classList.add('expired');
+          }
 
           // Agregar evento para cambiar el color de la fila cuando se marca/desmarca el checkbox
           checkboxCompleta.addEventListener('change', function () {
